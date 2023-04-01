@@ -1,18 +1,19 @@
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-function Login() {
+import Login from './pages/Login'
+import Layout from './pages/Layout'
+
+function App () {
   return (
-    <div class="container">
-      <h1>Welcome</h1>
-      <form>
-        <label for="username">用户名</label>
-        <input type="text" id="username" name="username" required></input>
-        <label for="password">密码</label>
-        <input type="password" id="password" name="password" required></input>
-        <button type="submit">登录</button>
-      </form>
-    </div>
-  );
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Layout />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  )
 }
 
-export default Login;
+export default App
