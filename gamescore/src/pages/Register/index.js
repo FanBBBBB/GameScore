@@ -5,19 +5,23 @@ import { useNavigate } from 'react-router-dom'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { useStore } from '../../store'
 
-const Login = () => {
+const Register = () => {
   const { loginStore } = useStore()
   const navigate = useNavigate()
   async function onFinish (values) {
     console.log(values)
     // values：放置的是所有表单项中用户输入的内容
     // todo:登录
-    const { username, password } = values
-    await loginStore.login({ username, password })
-    // 跳转首页
-    navigate('/', { replace: true })
-    // 提示用户
-    message.success('登录成功')
+    const { username, password1, password2 } = values
+    if (password1 != password2) {
+      message.error('两次密码不同')
+    } else {
+      await loginStore.register({ username, password1 })
+      // 跳转首页
+      navigate('/login', { replace: true })
+      // 提示用户
+      message.success('注册成功')
+    }
   }
 
   return (
@@ -25,7 +29,7 @@ const Login = () => {
       <Card className="login-container">
         {/* <img className="login-logo" src={logo} alt="" /> */}
         <Col push={10}>
-          <h1>登录</h1>
+          <h1>注册</h1>
         </Col>
         <Form
           validateTrigger={['onBlur', 'onChange']}
@@ -56,7 +60,7 @@ const Login = () => {
             />
           </Form.Item>
           <Form.Item
-            name="password"
+            name="password1"
             rules={[
               {
                 required: true, message: '请输入密码!'
@@ -75,8 +79,32 @@ const Login = () => {
             ]}
           >
             <Input prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
+              type="password1"
+              placeholder="Password1"
+            />
+          </Form.Item>
+          <Form.Item
+            name="password2"
+            rules={[
+              {
+                required: true, message: '请重复密码!'
+              },
+              {
+                max: 20, message: '密码不超过20个字符'
+              },
+              {
+                min: 8, message: '密码至少8个字符'
+              },
+              {
+                pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, "g"),
+                message: '密码名称只允许包含数字、字母和下划线',
+                validateTrigger: 'onChange'
+              }
+            ]}
+          >
+            <Input prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password2"
+              placeholder="Password2"
             />
           </Form.Item>
           <Form.Item name="remember" valuePropName="checked">
@@ -87,9 +115,8 @@ const Login = () => {
 
           <Form.Item>
             <Button type="primary" htmlType="submit" size="large" block>
-              登录
+              注册
             </Button>
-            Or <a href="http://localhost:3000/register">register now</a>
           </Form.Item>
         </Form>
       </Card>
@@ -97,4 +124,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
