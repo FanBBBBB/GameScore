@@ -1,0 +1,18 @@
+.score{
+    background-color: #ff0000;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 1;
+    border-radius: 10px;
+    
+}
+
+.scorevalue{
+    font-size: 20px;
+    font-weight: bold;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
