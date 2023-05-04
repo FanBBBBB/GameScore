@@ -1,3 +1,11 @@
+.games{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .score{
     background-color: #ff0000;
     width: 50px;
@@ -16,3 +24,47 @@
     transform: translate(-50%, -50%);
     position: absolute;
 }
+
+.gamecard{
+    margin: 20px 20px 20px 20px;
+    transition: all 0.2s;
+}
+.gamecard:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.182);;
+}
+.selecter{
+    height: 80px;
+    position: relative;
+    width: 100%;
+}
+body{
+    background-image: url(../../assets/background.jpg);
+}
+.ant-menu-item{
+    width: 100px;
+    text-align: center;
+}
+.ant-menu-item-selected{
+    background-color: #7a0000 !important;
+}
+.search{
+    width: 30%;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+}
+.selectbox{
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+// .ant-menu-root{
+//     background-color: black;
+// }
+// .ant-menu-title-content{
+//     color: #ffffff;
+//     text-align: center;
+// }
