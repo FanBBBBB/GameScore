@@ -12,7 +12,7 @@ const Layout = () => {
     <div className="mainpage">
         <Row>
             <Col span={20}>     
-                <img className='logo' width={225} height={117} src={[require("../../assets/logo.png")]}></img>
+                <img className='logo' width={225} height={117} src={[require("../../assets/logo1.png")]}></img>
             </Col>
             <Col span={4}>
                     <Avatar className='avater' shape="square" size={48} icon={<UserOutlined />} />
