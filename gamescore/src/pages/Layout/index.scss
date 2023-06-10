@@ -1,0 +1,139 @@
+.layout {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: center/cover url('../../assets/background.jpg');
+    .mainpage{
+        width: 920px;
+        margin:0 auto;
+        margin-top:15px;
+        vertical-align: middle;
+        .logo {
+            margin-bottom: -90px;
+            margin-top: 0px;
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+        .avater {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .mainscore {
+            width: 30px;
+            height: 30px;
+            margin:0px 10px;
+        }
+        .mainstar {
+            width: 30px;
+            height: 30px;
+            margin:0px 10px;
+        }
+        .mainsettings {
+            width: 30px;
+            height: 30px;
+            margin:0px 10px;           
+        }
+        .searchbar {
+            p {
+                font-size: 22px;
+                color: white;
+            }
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background: rgba(0, 0, 0, .8);
+            height: 50px;
+            .largebtn {
+                height: 50px;
+                width: 90px;
+            }
+            .Input {
+                width: 520px;
+                margin-left: 160px;
+            }
+            .searchicon {
+                margin-left: 10px;
+            }
+        }
+        .gamecontent 
+        {
+            background: rgba(255, 255, 255, .5);
+            .col1 {
+                border-right: 4px solid rgba(150, 150, 150, .8);
+            }
+            .col2 {
+                border-right: 4px solid rgba(150, 150, 150, .8);
+            }
+            // .col3 {
+            // }
+            .subtitle {
+                p {
+                    font-size: 22px;
+                    color: white;
+                }
+                height: 30px;
+                background: rgba(0, 0, 0, .8);
+            }
+            .game{
+                margin-top: 20px;
+                width: 300px;
+            .ranklabel {
+                p {
+                    font-size: 30px;
+                    color: black;
+                }
+                width:30px;
+                height:75px;
+                display: inline-block;
+            }
+            .gamepicture {
+                background: rgba(255,215,168,1);
+                display: inline-block;
+                border: 1px solid rgba(0, 0, 0, 1);
+                margin-right: 10px;
+            }
+            .game-discription {
+                width:170px;
+                display: inline-block;
+                .rate {
+                    float:left;
+                }
+            }
+        }
+        }
+    }
+  }
+@media screen and (min-width:1400px){
+.layout {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: center/cover url('../../assets/background.jpg');
+    .mainpage{
+        width: 1400px;
+        margin:0 auto;
+        margin-top:15px;
+        vertical-align: middle;
+        .logo {
+            margin-bottom: -90px;
+            margin-top: 0px;
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+        .avater {
+            margin:10px 20px;
+        }
+        .mainscore {
+            margin:10px 10px;
+        }
+        .mainstar {
+            margin:10px 30px;
+        }
+        .mainsettings {
+            margin:10px 10px;
+        }
+    }
+  }}
