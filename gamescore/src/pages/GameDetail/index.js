@@ -6,15 +6,15 @@ function GameDetail () {
   const gameTitle = '生化危机4: 重制版'
   const coverImageUrl = require("../../assets/202302241620479544_small.png")
   const score = 4
-  const comments = [
-    {
-      id: 1,
-      avatarUrl: 'https://example.com/user-avatar.png',
-      content: '这个游戏很好玩！推荐给大家！',
-      time: '2022-01-01 12:00:00',
-    },
-    // 其他评论...
-  ]
+  // const comments = [
+  //   {
+  //     id: 1,
+  //     avatarUrl: 'https://example.com/user-avatar.png',
+  //     content: '这个游戏很好玩！推荐给大家！',
+  //     time: '2022-01-01 12:00:00',
+  //   },
+  //   // 其他评论...
+  // ]
 
   return (
     <div className="page-container">
@@ -48,7 +48,7 @@ function GameDetail () {
             </div>
 
           </div>
-          <List
+          {/* <List
             header={`${comments.length} 条评论`}
             itemLayout="horizontal"
             dataSource={comments}
@@ -62,7 +62,7 @@ function GameDetail () {
                 />
               </List.Item>
             )}
-          />
+          /> */}
         </div>
       </div>
     </div>
