@@ -1,13 +1,15 @@
 import React from 'react'
+import { useState } from 'react'
 import { Rate, List, Avatar, Button } from 'antd'
 import { useLocation } from 'react-router-dom'
 import './index.scss'
 
+const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful']
 
 function GameDetail () {
   const location = useLocation()
   const thisgame = location.state
-
+  const [value, setValue] = useState(3)
   const gameTitle = thisgame.name
   const score = 4
   // const comments = [
