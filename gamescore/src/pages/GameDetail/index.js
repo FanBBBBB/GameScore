@@ -1,17 +1,15 @@
 import React from 'react'
 import { Rate, List, Avatar, Button } from 'antd'
-import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import './index.scss'
 
-const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful']
 
 function GameDetail () {
-  const gameTitle = '生化危机4: 重制版'
-  const coverImageUrl = require("../../assets/202302241620479544_small.png")
-  const score = 'good'
+  const location = useLocation()
+  const thisgame = location.state
 
-  const [value, setValue] = useState(4)
-
+  const gameTitle = thisgame.name
+  const score = 4
   // const comments = [
   //   {
   //     id: 1,
@@ -34,21 +32,11 @@ function GameDetail () {
         </div>
         <div className="body">
           <div className="cover-container">
-            <img src={coverImageUrl} alt="游戏封面" className="cover-image" />
+            <img src={thisgame.gameimg} alt="游戏封面" className="cover-image" />
             <div className='desc'>
-              <div className='desc-text'>
-                简介：前所未有的生化灾难“浣熊市事件”六年后......
-                自事件中生还的里昂·斯科特·肯尼迪因其能力获得认可，成为直属于总统的特工。
-
-                凭着多次执行任务累积了经验的里昂被派去营救被绑架的总统千金。
-                里昂根据目击情报前往欧洲一条贫寒村庄，在那里看到的是疯狂的村民们。
-                一场严酷的营救剧（生存恐怖）即将揭开帷幕。
-              </div>
-              <br />
-              <div><span>官网：</span>https://www.residentevil.com/re4/zh-hans/</div>
-              <br />
-              <div className='desc-time'>上市时间：2023-03-24</div>
-              <br />
+              <div className='desc-text'>{thisgame.info}</div>
+              <div><span>官网：</span><a href={thisgame.gameurl}>{thisgame.gameurl}</a></div>
+              <div className='desc-time'>{"发售时间：" + thisgame.date}</div>
               <div className="score-container">
                 {/* <div>评分： <Rate allowHalf defaultValue={score} /></div>
                 <span className="score-text">{score.toFixed(1)}</span> */}
