@@ -1,7 +1,7 @@
 .page-container {
   display: flex;
   justify-content: center;
-//   align-items: center;
+  //   align-items: center;
   height: 100vh;
 }
 
@@ -11,21 +11,21 @@
   flex-direction: column;
   justify-content: space-between;
   height: 80%;
-  
+
   padding: 20px;
 }
 
 .header {
-//   text-align: center;
+  //   text-align: center;
 }
 
-.desc{
-    padding-left: 20px;
-    line-height: 2;
+.desc {
+  padding-left: 20px;
+  line-height: 2;
 }
 
-.desc-text{
-    word-break:keep-all
+.desc-text {
+  word-break: keep-all;
 }
 
 .body {
@@ -44,7 +44,7 @@
 
 .cover-image {
   width: 40vw;
-//   height: 300px;
+  //   height: 300px;
   object-fit: cover;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .score-text {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .comment-list {
@@ -63,9 +63,7 @@
   overflow-y: auto;
 }
 
-
-
-.btn-box{
-    display: flex;
-    justify-content: center;
+.btn-box {
+  display: flex;
+  justify-content: center;
 }
