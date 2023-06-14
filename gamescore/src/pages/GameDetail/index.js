@@ -1,11 +1,11 @@
-import React from 'react';
-import { Rate, List, Avatar, Button } from 'antd';
-import './index.scss';
+import React from 'react'
+import { Rate, List, Avatar, Button } from 'antd'
+import './index.scss'
 
-function GameDetailPage() {
-  const gameTitle = '生化危机4: 重制版';
-  const coverImageUrl = require("../../assets/202302241620479544_small.png");
-  const score = 4;
+function GameDetail () {
+  const gameTitle = '生化危机4: 重制版'
+  const coverImageUrl = require("../../assets/202302241620479544_small.png")
+  const score = 4
   const comments = [
     {
       id: 1,
@@ -14,7 +14,7 @@ function GameDetailPage() {
       time: '2022-01-01 12:00:00',
     },
     // 其他评论...
-  ];
+  ]
 
   return (
     <div className="page-container">
@@ -37,16 +37,16 @@ function GameDetailPage() {
               <div><span>官网：</span><a href='https://www.residentevil.com/re4/zh-hans/'>https://www.residentevil.com/re4/zh-hans/</a></div>
               <div className='desc-time'>上市时间：2023-03-24</div>
               <div className="score-container">
-                <div>评分： <Rate allowHalf defaultValue={score} /></div>  
+                <div>评分： <Rate allowHalf defaultValue={score} /></div>
                 <span className="score-text">{score.toFixed(1)}</span>
                 <span className="score-text">{`(5640人参与)`}</span>
               </div>
               <div className='btn-box'>
                 <Button>发表评分</Button>
               </div>
-              
+
             </div>
-            
+
           </div>
           <List
             header={`${comments.length} 条评论`}
@@ -66,7 +66,7 @@ function GameDetailPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default GameDetailPage;
+export default GameDetail
