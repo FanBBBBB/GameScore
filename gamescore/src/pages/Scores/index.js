@@ -1,31 +1,35 @@
 import { Card, Avatar, Menu, Select, Space, Input } from "antd";
+import axios from "axios";
 import "./index.scss";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 const { Search } = Input;
 const { Meta } = Card;
 
-const gamelist = [
-  {
-    name: "Game1",
-    info: "这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏。这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静。这是静态数据中的第一款游戏。",
-    score: 9.5,
-    gameimg:
-      "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    platformimg: "https://xsgames.co/randomusers/avatar.php?g=pixel",
-    date: "xxxx-xx-xx",
-    gameurl: "https://www.baidu.com",
-  },
-  {
-    name: "Game2",
-    info: "这是静态数据中的第二款游戏，这是静态数据中的第一款游戏这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏。这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静。这是静态数据中的第一款游戏。",
-    score: 9.7,
-    gameimg:
-      "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    platformimg: "https://xsgames.co/randomusers/avatar.php?g=pixel",
-    date: "xxxx-xx-xx",
-    gameurl: "https://www.baidu.com",
-  }
-];
+// let [gamelist, setGames] = useState([]);
+
+// gamelist = [
+//   {
+//     name: "Game1",
+//     info: "这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏。这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静。这是静态数据中的第一款游戏。",
+//     score: 9.5,
+//     gameimg:
+//       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+//     platformimg: "https://xsgames.co/randomusers/avatar.php?g=pixel",
+//     date: "xxxx-xx-xx",
+//     gameurl: "https://www.baidu.com",
+//   },
+//   {
+//     name: "Game2",
+//     info: "这是静态数据中的第二款游戏，这是静态数据中的第一款游戏这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏。这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静。这是静态数据中的第一款游戏。",
+//     score: 9.7,
+//     gameimg:
+//       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+//     platformimg: "https://xsgames.co/randomusers/avatar.php?g=pixel",
+//     date: "xxxx-xx-xx",
+//     gameurl: "https://www.baidu.com",
+//   }
+// ];
 
 // ↑真正的gamelist，等爬取的数据
 // ↓虚假的gamelist
@@ -48,30 +52,23 @@ const gamelist = [
 // ];
 
 function Gamescorelist(games) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const count = games.length;
   const divs = Array.from({ length: count }, (_, index) => (
     <div className="gamecard" key={index}>
       <div className="score">
-        <p className="scorevalue">{ games[index].score }</p>
+        <p className="scorevalue">{games[index].score}</p>
       </div>
       <Card
-        onClick={() => navigate('/game', { state: games[index]}) }
+        onClick={() => navigate("/game", { state: games[index] })}
         style={{ width: 300 }}
-        cover={
-          <img
-            alt="example"
-            src={ games[index].gameimg }
-          />
-        }
+        cover={<img alt="example" src={games[index].gameimg} />}
       >
         <Meta
-          avatar={
-            <Avatar src={ games[index].platformimg } />
-          }
-          title={ games[index].name }
-          description={ games[index].date + "发售"}
+          avatar={<Avatar src={games[index].platformimg} />}
+          title={games[index].name}
+          description={games[index].date + "发售"}
         />
       </Card>
     </div>
@@ -80,10 +77,52 @@ function Gamescorelist(games) {
 }
 
 const Scores = () => {
-  const navigate = useNavigate()
+  const [gamelist, setGames] = useState([]);
+  useEffect(() => {
+    setGames([
+      {
+        name: "Game1",
+        info: "这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏。这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静。这是静态数据中的第一款游戏。",
+        score: 9.5,
+        gameimg:
+          "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+        platformimg: "https://xsgames.co/randomusers/avatar.php?g=pixel",
+        date: "xxxx-xx-xx",
+        gameurl: "https://www.baidu.com",
+      },
+      {
+        name: "Game2",
+        info: "这是静态数据中的第二款游戏，这是静态数据中的第一款游戏这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏。这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静。这是静态数据中的第一款游戏。",
+        score: 9.7,
+        gameimg:
+          "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+        platformimg: "https://xsgames.co/randomusers/avatar.php?g=pixel",
+        date: "xxxx-xx-xx",
+        gameurl: "https://www.baidu.com",
+      },
+    ]);
+  }, []);
+  const navigate = useNavigate();
+  const [gameName, setGameName] = useState("");
+
   const goTolayout = () => {
-      navigate('/')
-  }
+    navigate("/");
+  };
+
+  const onSearch = () => {
+    axios
+      .post("url", {
+        gameName: gameName,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setGames(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const items = [
     {
       label: (
@@ -158,7 +197,8 @@ const Scores = () => {
           allowClear
           enterButton
           size="large"
-          // onSearch={onSearch}
+          onSearch={onSearch}
+          onChange={(e) => setGameName(e.target.value)}
         />
       </div>
       {Gamescorelist(gamelist)}
