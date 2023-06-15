@@ -51,56 +51,52 @@ const { Meta } = Card;
 //   "15",
 // ];
 
-function Gamescorelist(games) {
+function Gamescorelist(games, type, score) {
   const navigate = useNavigate();
 
   const count = games.length;
-  const divs = Array.from({ length: count }, (_, index) => (
-    <div className="gamecard" key={index}>
-      <div className="score">
-        <p className="scorevalue">{games[index].score}</p>
-      </div>
-      <Card
-        onClick={() => navigate("/game", { state: games[index] })}
-        style={{ width: 300 }}
-        cover={<img alt="example" src={games[index].gameimg} />}
-      >
-        <Meta
-          avatar={<Avatar src={games[index].platformimg} />}
-          title={games[index].name}
-          description={games[index].date + "发售"}
-        />
-      </Card>
-    </div>
-  ));
+  const divs = Array.from({ length: count }, (_, index) => {
+    if (
+      ((type === "a" && games[index].type[0] === "策") ||
+        (type === "b" && games[index].type[0] === "动") ||
+        type === "c") &&
+      ((score === "d" && games[index].score >= 8) ||
+        (score === "e" && games[index].score >= 5) ||
+        score === "f")
+    )
+      return (
+        <div className="gamecard" key={index}>
+          <div className="score">
+            <p className="scorevalue">
+              {games[index].score ? games[index].score : "0.0"}
+            </p>
+          </div>
+          <Card
+            onClick={() => navigate("/game", { state: games[index] })}
+            style={{ width: 300 }}
+            cover={<img alt="example" src={games[index].image_url} />}
+          >
+            <Meta
+              avatar={
+                <Avatar src="https://www.pinclipart.com/picdir/middle/100-1003109_steam-clip-art.png" />
+              }
+              title={games[index].name}
+              description={
+                "发售时间：" +
+                (games[index].release_date ? games[index].release_date : "未知")
+              }
+            />
+          </Card>
+        </div>
+      );
+  });
   return <div className="games">{divs}</div>;
 }
 
 const Scores = () => {
   const [gamelist, setGames] = useState([]);
   useEffect(() => {
-    setGames([
-      {
-        name: "Game1",
-        info: "这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏。这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静。这是静态数据中的第一款游戏。",
-        score: 9.5,
-        gameimg:
-          "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-        platformimg: "https://xsgames.co/randomusers/avatar.php?g=pixel",
-        date: "xxxx-xx-xx",
-        gameurl: "https://www.baidu.com",
-      },
-      {
-        name: "Game2",
-        info: "这是静态数据中的第二款游戏，这是静态数据中的第一款游戏这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏。这是静态数据中的第一款游戏这是静态数据中的第一款游戏，这是静态数据中的第一款游戏，这是静态数据中的第一款游戏这是静。这是静态数据中的第一款游戏。",
-        score: 9.7,
-        gameimg:
-          "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-        platformimg: "https://xsgames.co/randomusers/avatar.php?g=pixel",
-        date: "xxxx-xx-xx",
-        gameurl: "https://www.baidu.com",
-      },
-    ]);
+    setGames([]);
   }, []);
   const navigate = useNavigate();
   const [gameName, setGameName] = useState("");
@@ -110,13 +106,14 @@ const Scores = () => {
   };
 
   const onSearch = () => {
+    // console.log(gameName)
     axios
-      .post("url", {
-        gameName: gameName,
+      .post("http://127.0.0.1:8080/games/name", {
+        name: gameName,
       })
       .then((response) => {
-        console.log(response.data);
-        setGames(response.data);
+        console.log(response.data.data);
+        setGames(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -138,6 +135,18 @@ const Scores = () => {
     },
   ];
 
+  const [gametype, setType] = useState("c");
+  const [gamescore, setGamescore] = useState("f");
+
+  function typeChange(e) {
+    console.log(e);
+    setType(e);
+  }
+  function scoreChange(e) {
+    console.log(e);
+    setGamescore(e);
+  }
+
   return (
     <div>
       <Menu selectedKeys="score" mode="horizontal" items={items} theme="dark" />
@@ -146,19 +155,19 @@ const Scores = () => {
           <label>游戏类型：</label>
           <Select
             size="large"
-            defaultValue="a"
+            defaultValue="c"
             style={{
               width: 120,
             }}
-            // onChange={handleChange}
+            onChange={typeChange}
             options={[
               {
                 value: "a",
-                label: "动作",
+                label: "策略",
               },
               {
                 value: "b",
-                label: "解谜",
+                label: "动作",
               },
               {
                 value: "c",
@@ -167,22 +176,22 @@ const Scores = () => {
             ]}
           />
           <Space />
-          <label>发售时间：</label>
+          <label>评分范围：</label>
           <Select
             size="large"
-            defaultValue="d"
+            defaultValue="f"
             style={{
               width: 120,
             }}
-            // onChange={handleChange}
+            onChange={scoreChange}
             options={[
               {
                 value: "d",
-                label: "一年内",
+                label: "8分以上",
               },
               {
                 value: "e",
-                label: "三年内",
+                label: "5分以上",
               },
               {
                 value: "f",
@@ -201,7 +210,7 @@ const Scores = () => {
           onChange={(e) => setGameName(e.target.value)}
         />
       </div>
-      {Gamescorelist(gamelist)}
+      {Gamescorelist(gamelist, gametype, gamescore)}
     </div>
   );
 };
