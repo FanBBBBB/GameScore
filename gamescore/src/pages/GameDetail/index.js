@@ -9,7 +9,7 @@ const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful']
 function GameDetail () {
   const location = useLocation()
   const thisgame = location.state
-  const [value, setValue] = useState(3)
+  const [value, setValue] = useState(4)
   const gameTitle = thisgame.name
   const score = 4
   // const comments = [
