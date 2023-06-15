@@ -10,7 +10,7 @@ class LoginStore {
 
   login = async ({ username, password }) => {
     // 调用登录接口
-    const res = await http.post('aaaaa', {
+    const res = await http.post('/login', {
       username, password
     })
     // 存入内存
@@ -21,7 +21,7 @@ class LoginStore {
 
   register = async ({ username, password }) => {
     // 调用注册接口
-    const res = await http.post('aaaaa', {
+    const res = await http.post('/register', {
       username, password
     })
   }
