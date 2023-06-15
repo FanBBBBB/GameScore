@@ -74,7 +74,7 @@ function Gamescorelist(games, type, score) {
           <Card
             onClick={() => navigate("/game", { state: games[index] })}
             style={{ width: 300 }}
-            cover={<img alt="example" src={games[index].image_url} />}
+            cover={<img alt="无图片" src={games[index].image_url ? games[index].image_url : "../assets/noimg.png"} />}
           >
             <Meta
               avatar={

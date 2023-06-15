@@ -9,7 +9,7 @@ const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful']
 function GameDetail () {
   const location = useLocation()
   const thisgame = location.state
-  const [value, setValue] = useState(4)
+  const [value, setValue] = useState(3)
   const gameTitle = thisgame.name
   const score = 4
   // const comments = [
@@ -34,11 +34,15 @@ function GameDetail () {
         </div>
         <div className="body">
           <div className="cover-container">
-            <img src={thisgame.gameimg} alt="游戏封面" className="cover-image" />
+            <img src={thisgame.image_url} alt="游戏封面" className="cover-image" />
             <div className='desc'>
               <div className='desc-text'>{thisgame.info}</div>
-              <div><span>官网：</span><a href={thisgame.gameurl}>{thisgame.gameurl}</a></div>
-              <div className='desc-time'>{"发售时间：" + thisgame.date}</div>
+              <div><span>官网：</span><a href='https://gameplus-platform.cdn.bcebos.com/'>https://gameplus-platform.cdn.bcebos.com/</a></div>
+              
+              <div className='en-name'>{"英文名称：" + thisgame.english_name}</div>
+              <div className='desc-time'>{"发售时间：" + thisgame.release_date}</div>
+              <div className='game-type'>{"游戏类型：" + thisgame.type}</div>
+              <div className='game-popu'>{"游戏热度：" + thisgame.popularity}</div>
               <div className="score-container">
                 {/* <div>评分： <Rate allowHalf defaultValue={score} /></div>
                 <span className="score-text">{score.toFixed(1)}</span> */}
@@ -52,9 +56,7 @@ function GameDetail () {
               <div className='btn-box'>
                 <Button>发表评分</Button>
               </div>
-
             </div>
-
           </div>
           {/* <List
             header={`${comments.length} 条评论`}
