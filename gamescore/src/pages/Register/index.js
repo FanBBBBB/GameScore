@@ -12,11 +12,15 @@ const Register = () => {
     console.log(values)
     // values：放置的是所有表单项中用户输入的内容
     // todo:登录
-    const { username, password1, password2 } = values
-    if (password1 != password2) {
+    const { username, password, password2 } = values
+    if (password != password2) {
       message.error('两次密码不同')
+      console.log(password)
+      console.log(password2)
     } else {
-      await loginStore.register({ username, password1 })
+      console.log(password)
+      console.log(password2)
+      await loginStore.register({ username, password })
       if (loginStore.result == true) {
         // 跳转首页
         navigate('/login', { replace: true })
@@ -62,7 +66,7 @@ const Register = () => {
             />
           </Form.Item>
           <Form.Item
-            name="password1"
+            name="password"
             rules={[
               {
                 required: true, message: '请输入密码!'
@@ -81,8 +85,8 @@ const Register = () => {
             ]}
           >
             <Input prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password1"
-              placeholder="Password1"
+              type="password"
+              placeholder="Password"
             />
           </Form.Item>
           <Form.Item

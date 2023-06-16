@@ -14,6 +14,7 @@ class LoginStore {
     const res = await http.post('/login', {
       username, password
     })
+    // console.log(res.data)
     // 存入内存
     // this.token = res.data.token
     //存入LocalStorage
@@ -23,6 +24,7 @@ class LoginStore {
 
   register = async ({ username, password }) => {
     // 调用注册接口
+    console.log(password)
     const res = await http.post('/register', {
       username, password
     })
