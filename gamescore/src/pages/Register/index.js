@@ -109,7 +109,7 @@ const Register = () => {
             ]}
           >
             <Input prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password2"
+              type="password"
               placeholder="Password2"
             />
           </Form.Item>
