@@ -15,9 +15,11 @@ const Login = () => {
     const { username, password } = values
     await loginStore.login({ username, password })
     // 跳转首页
-    navigate('/', { replace: true })
-    // 提示用户
-    message.success('登录成功')
+    if (loginStore.result == true) {
+      navigate('/', { replace: true })
+      // 提示用户
+      message.success('登录成功')
+    }
   }
 
   return (

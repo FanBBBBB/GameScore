@@ -17,10 +17,12 @@ const Register = () => {
       message.error('两次密码不同')
     } else {
       await loginStore.register({ username, password1 })
-      // 跳转首页
-      navigate('/login', { replace: true })
-      // 提示用户
-      message.success('注册成功')
+      if (loginStore.result == true) {
+        // 跳转首页
+        navigate('/login', { replace: true })
+        // 提示用户
+        message.success('注册成功')
+      }
     }
   }
 

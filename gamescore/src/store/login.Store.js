@@ -3,6 +3,7 @@ import { setToken, getToken, clearToken, http } from '../utils'
 
 class LoginStore {
   // token = getToken() || ''
+  result = false
   constructor() {
     // 响应式
     makeAutoObservable(this)
@@ -17,6 +18,7 @@ class LoginStore {
     // this.token = res.data.token
     //存入LocalStorage
     // setToken(res.data.token)
+    this.result = res.data.success
   }
 
   register = async ({ username, password }) => {
@@ -24,6 +26,7 @@ class LoginStore {
     const res = await http.post('/register', {
       username, password
     })
+    this.result = res.data.success
   }
 }
 
