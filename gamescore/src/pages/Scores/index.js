@@ -60,7 +60,7 @@ function Gamescorelist(games, type, score) {
       ((type === "a" && games[index].type[0] === "策") ||
         (type === "b" && games[index].type[0] === "动") ||
         type === "c") &&
-      ((score === "d" && games[index].score >= 8) ||
+      ((score === "d" && games[index].score >= 9) ||
         (score === "e" && games[index].score >= 5) ||
         score === "f")
     )
@@ -187,7 +187,7 @@ const Scores = () => {
             options={[
               {
                 value: "d",
-                label: "8分以上",
+                label: "9分以上",
               },
               {
                 value: "e",
